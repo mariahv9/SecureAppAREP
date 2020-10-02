@@ -1,5 +1,6 @@
 package edu.escuelaing.arep.login;
 
+import edu.escuelaing.arep.HTTPSserver.URLReader;
 import spark.Request;
 import spark.Response;
 import javax.xml.bind.DatatypeConverter;
@@ -33,7 +34,7 @@ public class Login {
     public static String isLogged (Request request, Response response){
         String ans = "";
         if (login(request, response)){
-            ans += "https://ec2-100-25-34-176.compute-1.amazonaws.com/index";
+            ans += URLReader.readURL("https://ec2-100-25-34-176.compute-1.amazonaws.com:51003/consult");
         }else {
             ans += "Fallo el login, nombre o usuario ¡Incorrectos!";
         }

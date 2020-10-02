@@ -20,36 +20,9 @@ public class ServerClient {
     public static void main(String[] args) {
         port(getPort());
         secure("keyStores/ecikeystore.p12", "123456", null, null);
-        get("/hello", (req, res) -> "Hello Docker");
-        get ("/index", (req, res) -> inputDataPage(req, res));
-        get ("/results", (req, res) -> {
-            int loadCont;
-            String function = req.queryParams("user");
-            loadCont = getLoad();
-            readURL("http://ec2-35-175-129-150.compute-1.amazonaws.com:51001/results?user=" + function);
-            loadCont++;
-            if (loadCont > 2) {
-                loadCont = 0;
-                setLoad(loadCont);
-            } else {
-                setLoad(loadCont);
-            }
-            System.out.println(loadCont);
-            return inputDataPage(req, res);
-        });
         get ("/consult", (req, res) -> {
-            int loadCont;
             res.type("application/json");
-            loadCont = getLoad();
-            String url = readURL("http://ec2-35-175-129-150.compute-1.amazonaws.com:51001/consult");
-            loadCont++;
-            if (loadCont > 2) {
-                loadCont = 0;
-                setLoad(loadCont);
-            } else {
-                setLoad(loadCont);
-            }
-            System.out.println(loadCont);
+            String url = readURL("http://ec2-100-25-34-176.compute-1.amazonaws.com:51004/consult");
             return url;
         });
     }
@@ -129,6 +102,6 @@ public class ServerClient {
         if(System.getenv("PORT") != null){
             return Integer.parseInt(System.getenv("PORT"));
         }
-        return 4567;
+        return 5000;
     }
 }

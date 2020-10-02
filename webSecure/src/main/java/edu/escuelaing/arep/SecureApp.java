@@ -1,7 +1,6 @@
 package edu.escuelaing.arep;
 
 import edu.escuelaing.arep.login.Login;
-
 import static spark.Spark.*;
 
 public class SecureApp {

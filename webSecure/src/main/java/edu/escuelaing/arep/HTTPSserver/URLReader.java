@@ -14,14 +14,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class URLReader {
-    /**
-     * Method that read the url
-     * @param args
-     */
-    public static void main(String[] args) {
+
+
+    public static void configuration () {
         // Create a file and a password representation
         File trustStoreFile = new File("keyStores/myTrustStore");
-        char[] trustStorePassword = "456789".toCharArray();
+        char[] trustStorePassword = "987654".toCharArray();
         // Load the trust store, the default type is "pkcs12", the alternative is "jks"
         KeyStore trustStore = null;
         try {
@@ -59,39 +57,31 @@ public class URLReader {
         } catch (KeyManagementException e) {
             e.printStackTrace();
         }
-//        readURL("https://localhost:4567/index");
     }
 
     /**
      * Method that does the connection and evaluation of url
      * @param sitetoread
      */
-    public static void readURL(String sitetoread) {
+    public static String readURL(String sitetoread) {
+        configuration();
         try {
             URL siteURL = new URL(sitetoread);
             URLConnection urlConnection = siteURL.openConnection();
-            Map<String, List<String>> headers = urlConnection.getHeaderFields();
-            Set<Map.Entry<String, List<String>>> entrySet = headers.entrySet();
-            for (Map.Entry<String, List<String>> entry : entrySet) {
-                String headerName = entry.getKey();
-                if (headerName != null) {
-                    System.out.print(headerName + ":");
-                }
-                List<String> headerValues = entry.getValue();
-                for (String value : headerValues) {
-                    System.out.print(value);
-                }
-                System.out.println("");
-            }
             System.out.println("-------message-body------");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            InputStreamReader inputStream = new InputStreamReader(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(inputStream);
 
             String inputLine = null;
+            String url = "";
             while ((inputLine = reader.readLine()) != null) {
                 System.out.println(inputLine);
+                url += inputLine;
+                return url;
             }
         } catch (IOException x) {
-            System.err.println(x);
+            x.printStackTrace();
         }
+        return "";
     }
 }
