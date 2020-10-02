@@ -15,13 +15,17 @@ https://github.com/mariahv9/SecureAppAREP.git
 ```
 cd SecureAppAREP
 mvn package
-cd webSecure
 java -cp java -cp target/classes;target/dependency/* edu.escuelaing.arep.SecureApp
+```
+Cuando el servidor este corriendo ingrese en el navegador el siguiente url:
+
+```
+https://localhost:5000/index.html
 ```
 
 ### Despliegue de la App
 
-Abrir el siguiente para ver el despliegue:
+Abrir el siguiente para ver el despliegue en AWS:
 
 * [Despliegue AWS](https://ec2-3-91-132-47.compute-1.amazonaws.com:51003/index.html)
 
