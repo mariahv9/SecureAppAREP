@@ -20,8 +20,8 @@ public class URLReader {
      */
     public static void main(String[] args) {
         // Create a file and a password representation
-        File trustStoreFile = new File("keystores/myTrustStore");
-        char[] trustStorePassword = "987654".toCharArray();
+        File trustStoreFile = new File("keyStores/myTrustStore");
+        char[] trustStorePassword = "456789".toCharArray();
         // Load the trust store, the default type is "pkcs12", the alternative is "jks"
         KeyStore trustStore = null;
         try {
@@ -59,8 +59,7 @@ public class URLReader {
         } catch (KeyManagementException e) {
             e.printStackTrace();
         }
-        //readURL("https://google.com");
-        readURL("https://ec2-3-91-132-47.compute-1.amazonaws.com:51000/index.html");
+//        readURL("https://localhost:4567/index");
     }
 
     /**

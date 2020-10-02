@@ -1,4 +1,4 @@
-package edu.escuelaing.arep;
+package edu.escuelaing.arep.server;
 
 import spark.Request;
 import spark.Response;
@@ -8,12 +8,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import static spark.Spark.*;
+import static spark.Spark.get;
 
-/**
- * Class that works as RoundRobin.
- * @author Maria Fernanda Hernandez Vargas
- */
-public class SparkWebServer {
+public class ServerClient {
     private static int load = 0;
 
     /**
@@ -22,13 +19,14 @@ public class SparkWebServer {
      */
     public static void main(String[] args) {
         port(getPort());
+        secure("keyStores/ecikeystore.p12", "123456", null, null);
         get("/hello", (req, res) -> "Hello Docker");
         get ("/index", (req, res) -> inputDataPage(req, res));
         get ("/results", (req, res) -> {
             int loadCont;
             String function = req.queryParams("user");
             loadCont = getLoad();
-            readURL("http://ec2-35-175-129-150.compute-1.amazonaws.com:5100"+loadCont+"/results?user=" + function);
+            readURL("http://ec2-35-175-129-150.compute-1.amazonaws.com:51001/results?user=" + function);
             loadCont++;
             if (loadCont > 2) {
                 loadCont = 0;
@@ -43,7 +41,7 @@ public class SparkWebServer {
             int loadCont;
             res.type("application/json");
             loadCont = getLoad();
-            String url = readURL("http://ec2-35-175-129-150.compute-1.amazonaws.com:5100"+loadCont+"/consult");
+            String url = readURL("http://ec2-35-175-129-150.compute-1.amazonaws.com:51001/consult");
             loadCont++;
             if (loadCont > 2) {
                 loadCont = 0;
