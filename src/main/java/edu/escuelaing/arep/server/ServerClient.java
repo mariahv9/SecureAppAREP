@@ -10,6 +10,10 @@ import java.net.URLConnection;
 import static spark.Spark.*;
 import static spark.Spark.get;
 
+/**
+ * Class that functions as client.
+ * @author Maria Fernanda Hernandez Vargas
+ */
 public class ServerClient {
     private static int load = 0;
 

@@ -3,6 +3,10 @@ package edu.escuelaing.arep;
 import edu.escuelaing.arep.login.Login;
 import static spark.Spark.*;
 
+/**
+ * Class that makes a connection of web site
+ * @author Maria Fernanda Hernandez Vargas
+ */
 public class SecureApp {
     public static void main(String[] args) {
         port(getPort());

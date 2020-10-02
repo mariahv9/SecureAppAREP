@@ -9,13 +9,16 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
+/**
+ * Class that reads a URL and make SSL connection
+ * @author Maria Fernanda Hernandez Vargas
+ */
 public class URLReader {
 
-
+    /**
+     * Method that makes the configuration
+     */
     public static void configuration () {
         // Create a file and a password representation
         File trustStoreFile = new File("keyStores/myTrustStore");
